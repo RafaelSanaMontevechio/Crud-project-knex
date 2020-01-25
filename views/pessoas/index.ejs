@@ -1,0 +1,31 @@
+<%- include('../partials/header') %>
+
+<table class="pure-table pure-table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Nascimento</th>
+            <th>Cargo</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% pessoas.map(pessoa => { %>
+        <tr>
+            <td><%= pessoa.id %></td>
+            <td><%= pessoa.nome %></td>
+            <td><%= pessoa.nascimento %></td>
+            <td><%= pessoa.cargo %></td>
+            <td>
+                <a class="pure-button" href="/pessoas/update/<%= pessoa.id %>">Editar</a>
+                <a class="pure-button" href="/pessoas/delete/<%= pessoa.id %>"
+                    onclick="return confirm('Deseja realmente excluir?')">Excluir</a>
+            </td>
+        </tr>
+        <% }) %>
+    </tbody>
+</table>
+
+<%- include('../partials/footer') %>
