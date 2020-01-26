@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const pessoasRouter = require('./routes/pessoas');
+const projetosRouter = require('./routes/projetos');
 
 const db = require('knex')({
     client: 'mysql2',
@@ -30,5 +31,6 @@ app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => res.render('home'));
 app.use('/pessoas', pessoasRouter(dependencies));
+app.use('/projetos', projetosRouter(dependencies));
 
 app.listen(port, () => console.log('App is running on port: ', + port));

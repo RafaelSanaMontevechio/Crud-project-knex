@@ -1,0 +1,31 @@
+<%- include('../partials/header') %>
+
+<table class="pure-table pure-table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Proprietário</th>
+            <th>Gerente</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% projetos.map(projeto => { %>
+        <tr>
+            <td><%= projeto.id %></td>
+            <td><%= projeto.nome %></td>
+            <td><%= projeto.dono_id %></td>
+            <td><%= projeto.gerente_id %></td>
+            <td>
+                <a class="pure-button" href="/projetos/update/<%= projetos.id %>">Editar</a>
+                <a class="pure-button" href="/projetos/delete/<%= projetos.id %>"
+                    onclick="return confirm('Deseja realmente excluir?')">Excluir</a>
+            </td>
+        </tr>
+        <% }) %>
+    </tbody>
+</table>
+
+<%- include('../partials/footer') %>
