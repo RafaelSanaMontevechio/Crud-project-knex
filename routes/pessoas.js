@@ -1,15 +1,16 @@
-const express = require('express');
-const pessoasController = require('../controllers/pessoas');
+const init = db => {
 
-const pessoasRouter = ({ db }) => {
+    const express = require('express');
     const router = express.Router();
-    router.get('/', pessoasController.index.bind(null, db));
+    const pessoasController = require('../controllers/pessoas')(db);
+
+    router.get('/', pessoasController.index.bind(null));
     router.get('/create', pessoasController.createForm);
-    router.post('/create', pessoasController.createProcess.bind(null, db));
-    router.get('/update/:id', pessoasController.updateForm.bind(null, db));
-    router.post('/update/:id', pessoasController.updateProcess.bind(null, db));
-    router.get('/delete/:id', pessoasController.deleteOne.bind(null, db));
+    router.post('/create', pessoasController.createProcess.bind(null));
+    router.get('/update/:id', pessoasController.updateForm.bind(null));
+    router.post('/update/:id', pessoasController.updateProcess.bind(null));
+    router.get('/delete/:id', pessoasController.deleteOne.bind(null));
     return router;
 }
 
-module.exports = pessoasRouter
+module.exports = init
